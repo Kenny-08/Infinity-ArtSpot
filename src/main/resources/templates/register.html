@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <!-- owl carousel -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <!-- magnific popup -->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <!-- mean menu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
+    <!-- main style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <!-- responsive -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <link rel="stylesheet" th:href="@{/css/loginpage.css}">
+</head>
+<body>
+
+
+<div class="form-div">
+
+    <form class="form-signin" th:action="@{/register}" method="POST" th:object="${user}">
+
+        <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+        <p class="alert alert-danger" th:if="${emailError}">Email already in use.</p>
+
+        <input class="form-control" type="email" placeholder="Email Address" name="email"  th:field="*{email}" required>
+        <input class="form-control" type="text" placeholder="First Name" name="first_name" th:field="*{firstName}" required>
+        <input class="form-control" type="text" placeholder="Last Name" name="last_name" th:field="*{lastName}" required>
+        <input class="form-control" type="text" placeholder="Phone Number" th:field="*{phoneNo}" required>
+        <input class="form-control" type="text" placeholder="Address" th:field="*{address}" required>
+        <input class="form-control" type="password" name="password" placeholder="Password" th:field="*{password}" required>
+        <input type="radio" th:field="*{role}" th:text="user" th:value="user" name="userType" class="m-2" required/>
+        <input type="radio" th:field="*{role}" th:text="artist" th:value="artist" name="userType" class="m-2" required/>
+
+        <button class="btn btn-lg text-white bg-theme1 btn-block" type="submit">Register</button>
+        <p class="mt-4 font-weight-normal">Already a member? <a th:href="@{/login}">click here</a></p>
+    </form>
+</div>
+
+
+
+<!-- fontawesome script -->
+<script src="https://kit.fontawesome.com/1f4b1ad491.js" crossorigin="anonymous"></script>
+
+<!-- bootstrap script -->
+<script th:src="@{https://code.jquery.com/jquery-3.2.1.slim.min.js}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js}" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
