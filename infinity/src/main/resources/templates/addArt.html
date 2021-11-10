@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
+
+    <!-- title -->
+    <title>Infinity</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <!-- owl carousel -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <!-- magnific popup -->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <!-- mean menu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
+    <!-- main style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <!-- responsive -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+</head>
+<body>
+
+<!-- header -->
+<div class="top-header-area color" id="sticker">
+    <div class="container" >
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+
+                    <div class="site-logo">
+                        <a th:href="@{/homepage}">
+                            <img th:src="@{/img/logo.png}" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="current-list-item"><a th:href="@{#}">Home</a>
+                                <ul class="sub-menu">
+                                    <li><a th:href="@{index.html}">Static Home</a></li>
+                                    <li><a th:href="@{index_2.html}">Slider Home</a></li>
+                                </ul>
+                            </li>
+
+                            <li ><a th:href="@{#}">Categories</a>
+                                <ul class="sub-menu">
+                                    <li><a th:href="@{index.html}">Hatching</a></li>
+                                    <li><a th:href="@{index_2.html}">Oil Painting</a></li>
+                                    <li><a th:href="@{index_2.html}">Watercolor Painting</a></li>
+                                </ul>
+                            </li>
+
+                            <!--                            <li sec:authorize="hasAuthority('artist')"><a th:href="@{about.html}">About</a></li>-->
+
+                            <li ><a th:href="@{/exhibition}">Exhibition</a></li>
+                            <li ><a th:href="@{/workshop}">Workshop</a></li>
+                            <li sec:authorize="hasAuthority('artist')"><a th:href="@{/addArt}">Sell Artwork</a></li>
+                            <li><a th:href="@{/about}">About</a></li>
+                            <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                            <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
+                            <li class="current-list-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+
+
+<!---Add product-->
+
+<div class="container mt-150 mb-150">
+    <div class="contact-form-box">
+        <div class="form-div">
+
+            <form enctype="multipart/form-data" class="form-signin" method="POST" th:action="@{/addArt}" th:object="${artwork}">
+                <b> <label>Title: </label> </b>
+                <br>
+                <input class="form-control" type="text" placeholder="Title" name="title" th:field="*{title}" required>
+                <br>
+                <b> <label>Description: </label> </b>
+                <input class="form-control" type="text" placeholder="Description of Artwork" th:field="*{description}" name="description" required>
+                <br>
+                <b><label>Art Category: </label></b>
+                <input type="radio" th:field="*{category}" th:text="Hatching" th:value="hatching" name="category" class="m-2" required/>
+                <input type="radio" th:field="*{category}" th:text="'Oil Painting'" th:value="oilPainting" name="category" class="m-2" required/>
+                <input type="radio" th:field="*{category}" th:text="'Watercolor Painting'" th:value="watercolorPainting" name="category" class="m-2" required/>
+                <br>
+                <b><label>Price: </label> </b>
+                <input class="form-control" type="number" th:field="*{price}" placeholder="Price" name="price"  required>
+
+                <b><label>Photos: </label></b>
+                <input class="form-control-file" type="file"  name="image" accept="image/png, image/jpeg" required/>
+
+                <br>
+                <button class="btn btn-dark" type="submit">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- jquery -->
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<!-- bootstrap -->
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<!-- count down -->
+<script th:src="@{/js/jquery.countdown.js}"></script>
+<!-- isotope -->
+<script th:src="@{/js/jquery.isotope-3.0.6.min.js}"></script>
+<!-- waypoints -->
+<script th:src="@{assets/js/waypoints.js}"></script>
+<!-- owl carousel -->
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<!-- magnific popup -->
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+<!-- mean menu -->
+<script th:src="@{/js/jquery.meanmenu.min.js}"></script>
+<!-- sticker js -->
+<script th:src="@{/js/sticker.js}"></script>
+<!-- main js -->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>
