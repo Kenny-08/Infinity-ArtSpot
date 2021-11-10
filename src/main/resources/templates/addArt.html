@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
     <!-- title -->
     <title>Infinity</title>
@@ -34,9 +33,17 @@
 </head>
 <body>
 
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
 <!-- header -->
 <div class="top-header-area color" id="sticker">
-    <div class="container" >
+    <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12 text-center">
                 <div class="main-menu-wrap">
@@ -52,18 +59,13 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a th:href="@{#}">Home</a>
-                                <ul class="sub-menu">
-                                    <li><a th:href="@{index.html}">Static Home</a></li>
-                                    <li><a th:href="@{index_2.html}">Slider Home</a></li>
-                                </ul>
-                            </li>
+                            <li class="current-list-item"><a th:href="@{/}">Home</a></li>
 
                             <li ><a th:href="@{#}">Categories</a>
                                 <ul class="sub-menu">
-                                    <li><a th:href="@{index.html}">Hatching</a></li>
-                                    <li><a th:href="@{index_2.html}">Oil Painting</a></li>
-                                    <li><a th:href="@{index_2.html}">Watercolor Painting</a></li>
+                                    <li><a th:href="@{/hatching}">Hatching</a></li>
+                                    <li><a th:href="@{/oilPainting}">Oil Painting</a></li>
+                                    <li><a th:href="@{/watercolorPainting}">Watercolor Painting</a></li>
                                 </ul>
                             </li>
 
@@ -77,6 +79,12 @@
                             <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
                             <li class="current-list-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 
+                            <!--                            <li>-->
+                            <!--                                <div class="header-icons">-->
+                            <!--                                    <a class="shopping-cart" th:href="@{cart.html}"><i class="fas fa-shopping-cart"></i></a>-->
+                            <!--                                    <a class="mobile-hide search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>-->
+                            <!--                                </div>-->
+                            <!--                            </li>-->
                         </ul>
                     </nav>
                     <a class="mobile-show search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>
@@ -89,7 +97,6 @@
     </div>
 </div>
 <!-- end header -->
-
 
 
 <!---Add product-->
