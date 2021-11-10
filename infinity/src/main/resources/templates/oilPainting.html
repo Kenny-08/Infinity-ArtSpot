@@ -125,7 +125,7 @@
                     <h3 th:text="*{getTitle()}">Title</h3>
                     <strong class="product-price" th:text="'Price ' + *{getPrice()} + ' $'"></strong><br>
                     <strong>By </strong><strong class="product-price" th:text="${artAndOwner.get(artwork)}"></strong><br><br>
-                    <a th:href="@{/cart}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a th:href="@{/shop/{id}(id=${artwork.getId()})}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Buy the Art</a>
                 </div>
             </div>
         </div>
