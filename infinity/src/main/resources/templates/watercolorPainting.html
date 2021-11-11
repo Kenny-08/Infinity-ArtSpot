@@ -120,7 +120,7 @@
             <div class="col-lg-4 col-md-6 text-center lemon" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'watercolorPainting'">
                 <div class="single-product-item">
                     <div class="product-image">
-                        <a href="single-product.html"><img th:src="*{getImgUrl()}" alt=""></a>
+                        <a th:href="@{/shop/{id}(id=${artwork.getId()})}"><img th:src="*{getImgUrl()}" alt=""></a>
                     </div>
                     <h3 th:text="*{getTitle()}">Title</h3>
                     <strong class="product-price" th:text="'Price ' + *{getPrice()} + ' $'"></strong><br>
