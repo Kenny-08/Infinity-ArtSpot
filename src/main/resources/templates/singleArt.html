@@ -128,7 +128,7 @@
           <span>Price</span><p class="single-product-pricing" th:text="${artwork.getPrice()} + ' $' "></p>
           <p th:text="${artwork.getDescription()}"></p>
 
-          <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Place Order</a><br><br>
+          <a href="#orderForm" class="cart-btn"><i class="fas fa-shopping-cart"></i> Place Order</a><br><br>
          <strong>Artist: </strong> <span th:text="${owner}"></span>  <br>
           <strong>Likes: </strong> <span th:text="${artwork.getLikes()}"></span>
 
@@ -145,6 +145,40 @@
   </div>
 </div>
 <!-- end single product -->
+
+<!-- order form -->
+
+
+
+<div class="container mt-150 mb-150" id="orderForm">
+  <div class="contact-form-box">
+    <div class="form-div"  >
+
+      <h2>Order Form</h2>
+
+      <form class="form-signin" method="POST" >
+        <b> <label>Email: </label> </b>
+        <br>
+        <input class="form-control" type="email" placeholder="infinityart@gmail.com" name="email" required>
+        <br>
+        <b> <label>Delivery Address: </label> </b>
+        <input class="form-control" type="text" placeholder="Address where artwork needs to be delivered" name="address" required>
+        <br>
+
+
+        <b><label>Price to be paid: </label> </b><strong>120$</strong>
+        <p class="form-text">Further transaction details would be sent to you via email</p>
+        <br>
+        <button class="btn btn-dark"  type="submit">Place order</button>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- order form -->
 
 <!-- footer -->
 <div class="footer-area">
@@ -204,6 +238,8 @@
 <!-- end footer -->
 
 
+
+
 <!-- jquery -->
 <script th:src="@{/js/jquery-1.11.3.min.js}"></script>
 <!-- bootstrap -->
@@ -224,6 +260,8 @@
 <script th:src="@{/js/sticker.js}"></script>
 <!-- main js -->
 <script th:src="@{/js/main.js}"></script>
+<!-- order form js -->
+<script th:src="@{/js/singleArt.js}"></script>
 
 </body>
 </html>
