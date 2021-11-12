@@ -136,7 +136,7 @@
         </div>
 
         <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center strawberry" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'hatching'">
+            <div class="col-lg-4 col-md-6 text-center strawberry" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'hatching' and ${artwork.label} == 'Unsold'">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a th:href="@{/shop/{id}(id=${artwork.getId()})}"><img th:src="*{getImgUrl()}" alt=""></a>
@@ -150,7 +150,7 @@
         </div>
 
         <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center berry" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'oilPainting'">
+            <div class="col-lg-4 col-md-6 text-center berry" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'oilPainting' and ${artwork.label} == 'Unsold'">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a th:href="@{/shop/{id}(id=${artwork.getId()})}"><img th:src="*{getImgUrl()}" alt=""></a>
@@ -164,7 +164,7 @@
         </div>
 
         <div class="row product-lists">
-            <div class="col-lg-4 col-md-6 text-center lemon" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'watercolorPainting'">
+            <div class="col-lg-4 col-md-6 text-center lemon" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.category} == 'watercolorPainting' and ${artwork.label} == 'Unsold'">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a th:href="@{/shop/{id}(id=${artwork.getId()})}"><img th:src="*{getImgUrl()}" alt=""></a>

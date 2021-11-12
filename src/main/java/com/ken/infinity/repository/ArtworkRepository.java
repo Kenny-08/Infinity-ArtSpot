@@ -11,5 +11,5 @@ public interface ArtworkRepository {
     public void save(Artwork artwork);
     public Artwork findArtworkById(int id);
     public List<Artwork> findArtworkByOwner(int id);
-    public void updateArtwork(Artwork artwork);
+    public void updateArtwork(int id);
 }
