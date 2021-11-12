@@ -11,7 +11,7 @@ public interface ArtworkService {
     void save(Artwork artwork, User user);
     Artwork findArtworkById(int id);
     List<Artwork> findArtworkByOwner(int id);
-    void updateArtwork(Artwork artwork);
+    void updateArtwork(int id);
     String getArtOwnerName(Artwork artwork);
 
 

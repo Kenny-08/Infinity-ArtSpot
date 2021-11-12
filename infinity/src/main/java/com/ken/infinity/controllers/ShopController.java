@@ -1,8 +1,10 @@
 package com.ken.infinity.controllers;
 
 import com.ken.infinity.models.Artwork;
+import com.ken.infinity.models.Orders;
 import com.ken.infinity.repository.ArtworkRepository;
 import com.ken.infinity.services.ArtworkService;
+import com.ken.infinity.services.OrdersService;
 import com.ken.infinity.services.SecurityService;
 import com.ken.infinity.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +25,15 @@ public class ShopController {
     ArtworkRepository artworkRepository;
     ArtworkService artworkService;
     SecurityService securityService;
+    OrdersService ordersService;
 
     @Autowired
-    public ShopController(UserService userService, ArtworkRepository artworkRepository, ArtworkService artworkService, SecurityService securityService) {
+    public ShopController(UserService userService, ArtworkRepository artworkRepository, ArtworkService artworkService, SecurityService securityService, OrdersService ordersService) {
         this.userService = userService;
         this.artworkRepository = artworkRepository;
         this.artworkService = artworkService;
         this.securityService = securityService;
+        this.ordersService = ordersService;
     }
 
     @GetMapping({"/shop"})
@@ -108,6 +112,8 @@ public class ShopController {
     public String ArtworkById(Model model, @PathVariable("artId") int artworkId){
         model.addAttribute("loggedIn", securityService.isLoggedIn());
         Map<String, Object> map = new HashMap<String, Object>();
+        Orders orders = new Orders();
+        model.addAttribute(orders);
         Artwork artwork = artworkService.findArtworkById(artworkId);
         map.put("artwork",artwork);
         model.addAttribute("owner", artworkService.getArtOwnerName(artwork));

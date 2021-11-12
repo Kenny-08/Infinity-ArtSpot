@@ -48,8 +48,8 @@ public class ArtworkServiceImpl implements ArtworkService {
     }
 
     @Override
-    public void updateArtwork(Artwork artwork) {
-        artworkRepository.updateArtwork(artwork);
+    public void updateArtwork(int id) {
+        artworkRepository.updateArtwork(id);
     }
 
     @Override

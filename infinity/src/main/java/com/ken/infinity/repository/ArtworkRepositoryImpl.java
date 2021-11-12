@@ -73,7 +73,8 @@ public class ArtworkRepositoryImpl implements ArtworkRepository {
     }
 
     @Override
-    public void updateArtwork(Artwork artwork) {
-
+    public void updateArtwork(int id) {
+        String query = "update artwork set label= 'Sold' where id = '"+ id + "'";
+        jdbcTemplate.update(query);
     }
 }
