@@ -23,15 +23,6 @@ public class OrdersRepositoryImpl implements OrdersRepository{
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    private int id;
-    private String email;
-    private int price;
-    private String address;
-    private String status;
-    private Timestamp ordered_at;
-    private int user_id;
-    private int artwork_id;
-
     private RowMapper<Orders> ordersRowMapper = new RowMapper<Orders>() {
         @Override
         public Orders mapRow(ResultSet rs, int rowNum) throws SQLException {
