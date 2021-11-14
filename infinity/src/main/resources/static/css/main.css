@@ -1668,7 +1668,7 @@ p.excerpt {
 }
 
 .single-artcile-bg {
-  background-image: url(../img/latest-news/news-bg-3.jpg);
+  /*background-image: url(../img/latest-news/news-bg-3.jpg);*/
   height: 450px;
 }
 
@@ -2761,4 +2761,27 @@ table.order-details tbody td {
   background-color: #0b0b0b;
 }
 
+.workshop-header {
+  padding: 50px 0;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  z-index: 1;
+  background-attachment: fixed;
+  padding-top: 100px;
+}
 
+.plain-footer {
+  background-color: #051922;
+  color: #fff;
+  padding: 50px 0;
+}
+
+.mode{
+  background-color: #ddd;
+  padding: 3px 10px;
+  display: inline;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+}

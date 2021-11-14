@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- title -->
+    <title>Infinity</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <!-- owl carousel -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <!-- magnific popup -->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <!-- mean menu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
+    <!-- main style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <!-- responsive -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+</head>
+<body>
+
+<!--PreLoader-->
+<div class="loader">
+    <div class="loader-inner">
+        <div class="circle"></div>
+    </div>
+</div>
+<!--PreLoader Ends-->
+
+<!-- header -->
+<div class="top-header-area color" id="sticker">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 text-center">
+                <div class="main-menu-wrap">
+                    <!-- logo -->
+
+                    <div class="site-logo">
+                        <a th:href="@{/homepage}">
+                            <img th:src="@{/img/logo.png}" alt="">
+                        </a>
+                    </div>
+                    <!-- logo -->
+
+                    <!-- menu start -->
+                    <nav class="main-menu">
+                        <ul>
+                            <li class="current-list-item"><a th:href="@{/}">Home</a></li>
+
+                            <li ><a th:href="@{#}">Categories</a>
+                                <ul class="sub-menu">
+                                    <li><a th:href="@{/hatching}">Hatching</a></li>
+                                    <li><a th:href="@{/oilPainting}">Oil Painting</a></li>
+                                    <li><a th:href="@{/watercolorPainting}">Watercolor Painting</a></li>
+                                </ul>
+                            </li>
+
+                            <!--                            <li sec:authorize="hasAuthority('artist')"><a th:href="@{about.html}">About</a></li>-->
+
+                            <li ><a th:href="@{/exhibition}">Exhibition</a></li>
+                            <li ><a th:href="@{/workshop}">Workshop</a></li>
+                            <li sec:authorize="hasAuthority('artist')"><a th:href="@{/addArt}">Sell Artwork</a></li>
+                            <li><a th:href="@{/about}">About</a></li>
+                            <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                            <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
+                            <li class="current-list-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+
+                            <!--                            <li>-->
+                            <!--                                <div class="header-icons">-->
+                            <!--                                    <a class="shopping-cart" th:href="@{cart.html}"><i class="fas fa-shopping-cart"></i></a>-->
+                            <!--                                    <a class="mobile-hide search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>-->
+                            <!--                                </div>-->
+                            <!--                            </li>-->
+                        </ul>
+                    </nav>
+                    <a class="mobile-show search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>
+                    <div class="mobile-menu"></div>
+
+                    <!-- menu end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<div class="workshop-header color">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Organize Workshop</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---Add workshop-->
+
+<div class="container mt-150 mb-150">
+    <div class="contact-form-box">
+        <div class="form-div">
+
+            <form enctype="multipart/form-data" class="form-signin" method="POST" th:action="@{/organizeWorkshop}" th:object="${workshop}">
+                <b> <label>Title: </label> </b>
+                <br>
+                <input class="form-control" th:field="*{title}" type="text" placeholder="Title" name="title"  required>
+                <br>
+                <b> <label>Description: </label> </b>
+                <input class="form-control" type="text" th:field="*{description}" placeholder="Description of Artwork" name="description" required>
+                <br>
+                <b><label>Workshop Mode: </label></b>
+                <input type="radio" th:field="*{mode}" th:text="Online" th:value="online" name="mode" class="m-2" required/>
+                <input type="radio" th:field="*{mode}" th:text="Offline" th:value="offline" name="mode" class="m-2" required/>
+                <br>
+                <br>
+                <b><label for="localDatetime">Date and Time:</label></b>
+                <input th:name="localDatetime" type="datetime-local" id="localDatetime" >
+
+                <br>
+                <b> <label>Venue: </label> </b>
+                <input class="form-control" th:field="*{venue}" type="text" placeholder="If offline, enter address else meet link" name="venue" required>
+                <br>
+                <b><label>Max Capacity: </label> </b>
+                <input class="form-control" th:field="*{total_seats}" type="number"  placeholder="Seats" name="total_seats"  required>
+
+                <b><label>Photos: </label></b>
+                <input class="form-control-file" type="file"  name="image" accept="image/png, image/jpeg" required/>
+
+                <br>
+                <button class="btn btn-dark" type="submit">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div class="plain-footer">
+    <div class="container">
+    </div>
+</div>
+<!-- end footer -->
+
+
+
+<!-- jquery -->
+<script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+<!-- bootstrap -->
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<!-- count down -->
+<script th:src="@{/js/jquery.countdown.js}"></script>
+<!-- isotope -->
+<script th:src="@{/js/jquery.isotope-3.0.6.min.js}"></script>
+<!-- waypoints -->
+<script th:src="@{assets/js/waypoints.js}"></script>
+<!-- owl carousel -->
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<!-- magnific popup -->
+<script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+<!-- mean menu -->
+<script th:src="@{/js/jquery.meanmenu.min.js}"></script>
+<!-- sticker js -->
+<script th:src="@{/js/sticker.js}"></script>
+<!-- main js -->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

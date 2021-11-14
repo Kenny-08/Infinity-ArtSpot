@@ -91,7 +91,7 @@ public class OrderController {
 //        end sending mail
 
 
-        return "homepage";
+        return "redirect:/homepage";
 
     }
 
