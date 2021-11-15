@@ -12,6 +12,7 @@ public interface ArtworkService {
     Artwork findArtworkById(int id);
     List<Artwork> findArtworkByOwner(int id);
     void updateArtwork(int id);
+    void updateArtworkLikes(int id, int likes);
     String getArtOwnerName(Artwork artwork);
 
 

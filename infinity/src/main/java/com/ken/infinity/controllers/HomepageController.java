@@ -1,8 +1,10 @@
 package com.ken.infinity.controllers;
 
 import com.ken.infinity.models.Artwork;
+import com.ken.infinity.models.Workshop;
 import com.ken.infinity.repository.ArtworkRepository;
 import com.ken.infinity.services.ArtworkService;
+import com.ken.infinity.services.WorkshopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,11 +19,13 @@ public class HomepageController {
 
     ArtworkRepository artworkRepository;
     ArtworkService artworkService;
+    WorkshopService workshopService;
 
     @Autowired
-    public HomepageController(ArtworkRepository artworkRepository, ArtworkService artworkService) {
+    public HomepageController(ArtworkRepository artworkRepository, ArtworkService artworkService, WorkshopService workshopService) {
         this.artworkRepository = artworkRepository;
         this.artworkService = artworkService;
+        this.workshopService = workshopService;
     }
 
     @RequestMapping({"/", "/homepage"})
@@ -41,6 +45,14 @@ public class HomepageController {
         model.addAttribute("artworks", featured);
         model.addAttribute("artAndOwner", artAndOwner);
         System.out.println(model);
+
+        List<Workshop> workshops = workshopService.getWorkshops();
+        Map<Object, String> workshopAndOrganizer = new HashMap<>();
+        for(Workshop workshop: workshops){
+            workshopAndOrganizer.put(workshop, workshopService.getWorkshopOrganizerName(workshop));
+        }
+        model.addAttribute("workshops", workshops);
+        model.addAttribute("workshopAndOrganizer", workshopAndOrganizer);
 
 
         return "homepage";

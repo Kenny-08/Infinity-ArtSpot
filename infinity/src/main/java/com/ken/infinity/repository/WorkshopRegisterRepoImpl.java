@@ -39,5 +39,6 @@ public class WorkshopRegisterRepoImpl implements WorkshopRegisterRepo{
     public void save(WorkshopRegister workshopRegister) {
         String query = "insert into workshopRegister(confirm, user_id, workshop_id) values(?,?,?)";
         jdbcTemplate.update(query, workshopRegister.getConfirm(), workshopRegister.getUser_id(), workshopRegister.getWorkshop_id());
+
     }
 }

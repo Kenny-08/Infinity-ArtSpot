@@ -12,4 +12,7 @@ public interface ArtworkRepository {
     public Artwork findArtworkById(int id);
     public List<Artwork> findArtworkByOwner(int id);
     public void updateArtwork(int id);
+    void updateArtworkLikes(int id, int likes);
+    void acceptArt(int id);
+    void declineArt(int id);
 }

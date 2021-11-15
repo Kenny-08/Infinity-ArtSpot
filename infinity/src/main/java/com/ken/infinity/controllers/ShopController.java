@@ -10,9 +10,7 @@ import com.ken.infinity.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -108,7 +106,40 @@ public class ShopController {
         return "oilPainting";
     }
 
-    @GetMapping("/shop/{artId}")
+
+    @GetMapping("/receivedArtworks")
+    public String receivedArtworks(Model model){
+        List<Artwork> artworks = artworkRepository.getArtworks();
+
+        Map<Object, String> artAndOwner = new HashMap<Object, String>();
+        for(Artwork artwork: artworks){
+            artAndOwner.put(artwork, artworkService.getArtOwnerName(artwork));
+        }
+
+        System.out.println("In controller : " + artworks);
+
+        model.addAttribute("artworks", artworks);
+        model.addAttribute("artAndOwner", artAndOwner);
+        System.out.println(model);
+
+        return "receivedArtworks";
+    }
+
+    @RequestMapping(value = "/acceptArt", method = { RequestMethod.GET, RequestMethod.POST })
+    public String acceptArt(Model model,  @RequestParam("artwork_id") int artwork_id){
+
+        artworkRepository.acceptArt(artwork_id);
+        return "redirect:/receivedArtworks";
+    }
+
+    @RequestMapping(value = "/declineArt", method = {RequestMethod.GET, RequestMethod.POST})
+    public String declineArt(Model model, @RequestParam("artwork_id") int artwork_id){
+        artworkRepository.declineArt(artwork_id);
+        return "redirect:/receivedArtworks";
+
+    }
+
+    @RequestMapping(value = "/shop/{artId}", method = { RequestMethod.GET, RequestMethod.POST })
     public String ArtworkById(Model model, @PathVariable("artId") int artworkId){
         model.addAttribute("loggedIn", securityService.isLoggedIn());
         Map<String, Object> map = new HashMap<String, Object>();
@@ -118,6 +149,9 @@ public class ShopController {
         map.put("artwork",artwork);
         model.addAttribute("owner", artworkService.getArtOwnerName(artwork));
         model.addAllAttributes(map);
+
+        artworkService.updateArtworkLikes(artworkId, artwork.getLikes());
+
         if(securityService.isLoggedIn())
             return "singleArt";
         else return "login";

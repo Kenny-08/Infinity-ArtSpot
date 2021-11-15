@@ -48,3 +48,6 @@ public class WorkshopRegister {
         this.workshop_id = workshop_id;
     }
 }
+
+
+// create table workshopRegister(id int not null auto_increment, confirm varchar(225) not null, user_id int not null, workshop_id int not null, primary key(id), foreign key(user_id) references user(id), foreign key(workshop_id) references workshop(id));
