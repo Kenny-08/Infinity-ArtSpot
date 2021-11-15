@@ -77,4 +77,23 @@ public class ArtworkRepositoryImpl implements ArtworkRepository {
         String query = "update artwork set label= 'Sold' where id = '"+ id + "'";
         jdbcTemplate.update(query);
     }
+
+    @Override
+    public void updateArtworkLikes(int id, int likes) {
+        likes = likes+1;
+        String query = "update artwork set likes = '"+ likes +"' where id = '"+ id + "'";
+        jdbcTemplate.update(query);
+    }
+
+    @Override
+    public void acceptArt(int id) {
+        String query = "update artwork set label = 'Unsold' where id = '"+ id + "' ";
+        jdbcTemplate.update(query);
+    }
+
+    @Override
+    public void declineArt(int id) {
+        String query = "delete from artwork where id='"+id+"' ";
+        jdbcTemplate.update(query);
+    }
 }

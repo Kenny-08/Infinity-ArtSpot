@@ -25,7 +25,7 @@ public class ArtworkServiceImpl implements ArtworkService {
         System.out.println(user.getId());
         artwork.setOwner_id(user.getId());
         artwork.setLikes(0);
-        artwork.setLabel("Unsold");
+        artwork.setLabel("Verifying");
         String imgUrl = "/img/artwork-photos/" + artwork.getId() + "/" + artwork.getImgUrl();
         artwork.setImgUrl(imgUrl);
         System.out.println(artwork.getImgUrl());
@@ -50,6 +50,11 @@ public class ArtworkServiceImpl implements ArtworkService {
     @Override
     public void updateArtwork(int id) {
         artworkRepository.updateArtwork(id);
+    }
+
+    @Override
+    public void updateArtworkLikes(int id, int likes) {
+        artworkRepository.updateArtworkLikes(id, likes);
     }
 
     @Override

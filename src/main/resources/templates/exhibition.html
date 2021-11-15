@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- title -->
+    <title>Exhibition</title>
+    <style>
+        .tab {
+            display: inline-block;
+            margin-left: 40px;
+        }
+    </style>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}">
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" th:href="@{/css/all.min.css}">
+    <!-- bootstrap -->
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <!-- owl carousel -->
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.css}">
+    <!-- magnific popup -->
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}">
+    <!-- animate css -->
+    <link rel="stylesheet" th:href="@{/css/animate.css}">
+    <!-- mean menu css -->
+    <link rel="stylesheet" th:href="@{/css/meanmenu.min.css}">
+    <!-- main style -->
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <!-- responsive -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+
+</head>
+
+<body>
+
+    <!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+
+    <!-- header -->
+    <div class="top-header-area" id="sticker">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 text-center">
+                    <div class="main-menu-wrap">
+                        <!-- logo -->
+
+                        <div class="site-logo">
+                            <a th:href="@{/homepage}">
+                                <img th:src="@{/img/logo.png}" alt="">
+                            </a>
+                        </div>
+                        <!-- logo -->
+
+                        <!-- menu start -->
+                        <nav class="main-menu">
+                            <ul>
+                                <li class="current-list-item"><a th:href="@{/}">Home</a></li>
+
+                                <li><a th:href="@{#}">Categories</a>
+                                    <ul class="sub-menu">
+                                        <li><a th:href="@{/hatching}">Hatching</a></li>
+                                        <li><a th:href="@{/oilPainting}">Oil Painting</a></li>
+                                        <li><a th:href="@{/watercolorPainting}">Watercolor Painting</a></li>
+                                    </ul>
+                                </li>
+
+                                <!--                            <li sec:authorize="hasAuthority('artist')"><a th:href="@{about.html}">About</a></li>-->
+
+                                <li><a th:href="@{/exhibition}">Exhibition</a></li>
+                                <li><a th:href="@{/workshop}">Workshop</a></li>
+                                <li sec:authorize="hasAuthority('artist')"><a th:href="@{/addArt}">Sell Artwork</a></li>
+                                <li sec:authorize="hasAuthority('admin')"><a th:href="@{/receivedArtworks}">Review Artworks</a></li>
+                                <li><a th:href="@{/about}">About</a></li>
+                                <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
+                                <li sec:authorize="hasAuthority('admin')" class="current-list-item"><a th:href="@{/heldExhibition}">Held Exhibition</a></li>
+                                <li class="current-list-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+
+                            </ul>
+                        </nav>
+                        <a class="mobile-show search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>
+                        <div class="mobile-menu"></div>
+
+                        <!-- menu end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header -->
+
+    <!-- breadcrumb-section -->
+    <div class="breadcrumb-section breadcrumb-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="breadcrumb-text">
+                        <p>Glance at some Master Piece</p>
+                        <h1>Exhibitions</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end breadcrumb section -->
+
+    <!-- workshops -->
+    <div class="latest-news mt-150 mb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6" th:each="exhibition: ${exhibitions}" th:object="${exhibition}">
+                    <div class="single-latest-news">
+                        <a th:href="@{/exhibition/{id}(id=${exhibition.getId()})}"><img class="latest-news-bg" th:src="*{getImgUrl()}" alt=""></a>
+                        <div class="news-text-box">
+                            <h3 th:text="*{title}"><a th:href="@{/exhibition/{id}(id=${exhibition.getId()})}">You will vainly look for fruit on it in autumn.</a></h3>
+                            <p class="blog-meta">
+
+                                <i class="fas fa-calendar"></i> <span class="date" th:text="' ' + ${#strings.substring(exhibition.datetime,0,11)}"> 27 December, 2019</span>
+                            </p>
+                            <p class="excerpt" th:text="${#strings.abbreviate(exhibition.description,100)}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                            <a th:href="@{/exhibition/{id}(id=${exhibition.getId()})}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <div class="pagination-wrap">
+                                <ul>
+                                    <li><a href="#">Prev</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a class="active" href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end workshops -->
+
+
+
+    <!-- footer -->
+    <div class="footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box about-widget">
+                        <h2 class="widget-title">About us</h2>
+                        <p>The Infinity Art Gallery, run by Jasmine Roy, is a gathering room where both pilgrims and inhabitants, tourists and travelers may enjoy a new dimension of sharing ideas.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box get-in-touch">
+                        <h2 class="widget-title">Get in Touch</h2>
+                        <ul>
+                            <li>Dashashwamedh road, Varanasi, Uttar Pradesh 221108.</li>
+                            <li>support@infinity.com</li>
+                            <li>+00 111 222 3333</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-box pages">
+                        <h2 class="widget-title">Pages</h2>
+                        <ul>
+                            <li><a th:href="@{/}">Home</a></li>
+                            <li><a th:href="@{/about}">About</a></li>
+                            <li><a th:href="@{/shop}">Shop</a></li>
+                            <li><a th:href="@{/workshop}">Workshops</a></li>
+                            <li><a th:href="@{/exhibition}">Exhibitions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="copyright">
+                        <div class="container">
+                            <div class="row">
+                                <div class="text-center">
+                                    <div class="social-icons">
+                                        <ul>
+                                            <li><a th:href="@{#}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a th:href="@{#}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a th:href="@{#}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a th:href="@{#}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                            <li><a th:href="@{#}" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end footer -->
+
+
+    <!-- jquery -->
+    <script th:src="@{/js/jquery-1.11.3.min.js}"></script>
+    <!-- bootstrap -->
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+    <!-- count down -->
+    <script th:src="@{/js/jquery.countdown.js}"></script>
+    <!-- isotope -->
+    <script th:src="@{/js/jquery.isotope-3.0.6.min.js}"></script>
+    <!-- waypoints -->
+    <script th:src="@{assets/js/waypoints.js}"></script>
+    <!-- owl carousel -->
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <!-- magnific popup -->
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+    <!-- mean menu -->
+    <script th:src="@{/js/jquery.meanmenu.min.js}"></script>
+    <!-- sticker js -->
+    <script th:src="@{/js/sticker.js}"></script>
+    <!-- main js -->
+    <script th:src="@{/js/main.js}"></script>
+
+</body>
+
+</html>

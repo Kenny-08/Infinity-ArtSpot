@@ -74,6 +74,7 @@
                             <li ><a th:href="@{/exhibition}">Exhibition</a></li>
                             <li ><a th:href="@{/workshop}">Workshop</a></li>
                             <li sec:authorize="hasAuthority('artist')"><a th:href="@{/addArt}">Sell Artwork</a></li>
+                            <li sec:authorize="hasAuthority('admin')"><a th:href="@{/receivedArtworks}">Review Artworks</a></li>
                             <li><a th:href="@{/about}">About</a></li>
                             <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
                             <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>

@@ -55,6 +55,7 @@ public class WorkshopRepositoryImpl implements WorkshopRepository{
     public void save(Workshop workshop) {
         String query = "insert into workshop(title, description, mode, organizer_id, datetime, venue, total_seats, registered_seats, imgUrl, status) values(?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(query, workshop.getTitle(), workshop.getDescription(), workshop.getMode(), workshop.getOrganizer_id(), workshop.getDatetime(), workshop.getVenue(), workshop.getTotal_seats(), workshop.getRegistered_seats(), workshop.getImgUrl(), workshop.getStatus());
+
     }
 
     @Override

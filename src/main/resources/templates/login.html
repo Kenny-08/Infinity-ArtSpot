@@ -27,17 +27,31 @@
     <link rel="stylesheet" th:href="@{/css/loginpage.css}">
 </head>
 <body>
-<h1 th:text="'Login Page'"></h1>
-
+<div class="workshop-header color">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Login Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 <div class="form-div">
     <form class="form-signin " th:action="@{/login}" method="post">
 
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center"> Sign in here</h1>
         <p class="alert alert-danger" th:if="${param.error}">Invalid email or password.</p>
-        <input class="form-control" type="text" placeholder="Email Address" name="username"  id="username"  required autofocus>
+        <input class="form-control" type="text" placeholder="Email Address" name="username"  id="username"  required autofocus><br>
         <input class="form-control" type="password" name="password" placeholder="Password"  id="password" required>
-        <button class="btn btn-lg text-white bg-theme1 btn-block" type="submit">Sign in</button>
-        <p class="mt-4 font-weight-normal">Not a user yet?<a th:href="@{/register}"> click here</a></p>
+        <br>
+
+        <div class="align-content-center">
+        <button class="btn btn-dark text-center" type="submit">Sign in</button>
+        </div>
+            <p class="mt-4 font-weight-normal">Not a user yet?<a th:href="@{/register}"> click here</a></p>
     </form>
 
 </div>

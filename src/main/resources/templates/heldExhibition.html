@@ -104,7 +104,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <h1>Organize Workshop</h1>
+                    <h1>Held Exhibition</h1>
                 </div>
             </div>
         </div>
@@ -117,15 +117,15 @@
     <div class="contact-form-box">
         <div class="form-div">
 
-            <form enctype="multipart/form-data" class="form-signin" method="POST" th:action="@{/organizeWorkshop}" th:object="${workshop}">
+            <form enctype="multipart/form-data" class="form-signin" method="POST" th:action="@{/heldExhibition}" th:object="${exhibition}">
                 <b> <label>Title: </label> </b>
                 <br>
                 <input class="form-control" th:field="*{title}" type="text" placeholder="Title" name="title"  required>
                 <br>
                 <b> <label>Description: </label> </b>
-                <input class="form-control" type="text" th:field="*{description}" placeholder="Description of Artwork" name="description" required>
+                <input class="form-control" type="text" th:field="*{description}" placeholder="Description of Exhibition" name="description" required>
                 <br>
-                <b><label>Workshop Mode: </label></b>
+                <b><label>Exhibition Mode: </label></b>
                 <input type="radio" th:field="*{mode}" th:text="Online" th:value="online" name="mode" class="m-2" required/>
                 <input type="radio" th:field="*{mode}" th:text="Offline" th:value="offline" name="mode" class="m-2" required/>
                 <br>

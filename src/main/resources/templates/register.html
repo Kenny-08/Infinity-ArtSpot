@@ -28,24 +28,37 @@
 </head>
 <body>
 
-
+<div class="workshop-header color">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Register Page</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
 <div class="form-div">
 
     <form class="form-signin" th:action="@{/register}" method="POST" th:object="${user}">
 
-        <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Register Here</h1>
         <p class="alert alert-danger" th:if="${emailError}">Email already in use.</p>
 
         <input class="form-control" type="email" placeholder="Email Address" name="email"  th:field="*{email}" required>
-        <input class="form-control" type="text" placeholder="First Name" name="first_name" th:field="*{firstName}" required>
-        <input class="form-control" type="text" placeholder="Last Name" name="last_name" th:field="*{lastName}" required>
-        <input class="form-control" type="text" placeholder="Phone Number" th:field="*{phoneNo}" required>
-        <input class="form-control" type="text" placeholder="Address" th:field="*{address}" required>
-        <input class="form-control" type="password" name="password" placeholder="Password" th:field="*{password}" required>
-        <input type="radio" th:field="*{role}" th:text="user" th:value="user" name="userType" class="m-2" required/>
-        <input type="radio" th:field="*{role}" th:text="artist" th:value="artist" name="userType" class="m-2" required/>
-
-        <button class="btn btn-lg text-white bg-theme1 btn-block" type="submit">Register</button>
+       <br> <input class="form-control" type="text" placeholder="First Name" name="first_name" th:field="*{firstName}" required>
+        <br> <input class="form-control" type="text" placeholder="Last Name" name="last_name" th:field="*{lastName}" required>
+        <br> <input class="form-control" type="text" placeholder="Phone Number" th:field="*{phoneNo}" required>
+        <br> <input class="form-control" type="text" placeholder="Address" th:field="*{address}" required>
+        <br> <input class="form-control" type="password" name="password" placeholder="Password" th:field="*{password}" required>
+        <br> <input type="radio" th:field="*{role}" th:text="User" th:value="user" name="userType" class="m-2" required/>
+        <br> <input type="radio" th:field="*{role}" th:text="Artist" th:value="artist" name="userType" class="m-2" required/>
+        <br><br>
+        <div class="align-content-center">
+        <button class="btn btn-dark text-center" type="submit">Register</button>
+        </div>
         <p class="mt-4 font-weight-normal">Already a member? <a th:href="@{/login}">click here</a></p>
     </form>
 </div>

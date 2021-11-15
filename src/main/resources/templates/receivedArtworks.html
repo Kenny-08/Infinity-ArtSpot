@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Responsive Bootstrap4 Shop Template, Created by Imran Hossain from https://imransdesign.com/">
 
     <!-- title -->
-    <title>Infinity</title>
-    <style>
-        .tab {
-            display: inline-block;
-            margin-left: 40px;
-        }
-    </style>
+    <title>Shop</title>
 
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" th:href="@{/img/favicon.png}">
@@ -53,8 +48,8 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12 text-center">
                 <div class="main-menu-wrap">
-                    <!-- logo -->
 
+                    <!-- logo -->
                     <div class="site-logo">
                         <a th:href="@{/homepage}">
                             <img th:src="@{/img/logo.png}" alt="">
@@ -65,7 +60,8 @@
                     <!-- menu start -->
                     <nav class="main-menu">
                         <ul>
-                            <li class="current-list-item"><a th:href="@{/}">Home</a></li>
+                            <li class="current-list-item"><a th:href="@{/}">Home</a>
+                            </li>
 
                             <li ><a th:href="@{#}">Categories</a>
                                 <ul class="sub-menu">
@@ -82,10 +78,18 @@
                             <li sec:authorize="hasAuthority('artist')"><a th:href="@{/addArt}">Sell Artwork</a></li>
                             <li sec:authorize="hasAuthority('admin')"><a th:href="@{/receivedArtworks}">Review Artworks</a></li>
                             <li><a th:href="@{/about}">About</a></li>
+
+
                             <li sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></li>
-                            <li class="current-list-item"><a th:href="@{/organizeWorkshop}">Organize Workshop</a></li>
+                            <li sec:authorize="isAnonymous()"><a th:href="@{/register}">Register</a></li>
                             <li class="current-list-item" sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
 
+                            <!--                            <li>-->
+                            <!--                                <div class="header-icons">-->
+                            <!--                                    <a class="shopping-cart" th:href="@{cart.html}"><i class="fas fa-shopping-cart"></i></a>-->
+                            <!--                                    <a class="mobile-hide search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>-->
+                            <!--                                </div>-->
+                            <!--                            </li>-->
                         </ul>
                     </nav>
                     <a class="mobile-show search-bar-icon" th:href="@{#}"><i class="fas fa-search"></i></a>
@@ -99,14 +103,15 @@
 </div>
 <!-- end header -->
 
+
 <!-- breadcrumb-section -->
 <div class="breadcrumb-section breadcrumb-bg">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
                 <div class="breadcrumb-text">
-                    <p>Unleash Your Creativity</p>
-                    <h1>Workshops</h1>
+                    <p>Wonderful Creations</p>
+                    <h1>Shop</h1>
                 </div>
             </div>
         </div>
@@ -114,48 +119,68 @@
 </div>
 <!-- end breadcrumb section -->
 
-<!-- workshops -->
-<div class="latest-news mt-150 mb-150">
+<!-- products -->
+<div class="product-section mt-150 mb-150">
     <div class="container">
+
         <div class="row">
-            <div class="col-lg-4 col-md-6" th:each="workshop: ${workshops}" th:object="${workshop}">
-                <div class="single-latest-news">
-                    <a th:href="@{/workshop/{id}(id=${workshop.getId()})}"><img class="latest-news-bg" th:src="*{getImgUrl()}" alt=""></a>
-                    <div class="news-text-box">
-                        <h3 th:text="*{title}"><a th:href="@{/workshop/{id}(id=${workshop.getId()})}">You will vainly look for fruit on it in autumn.</a></h3>
-                        <p class="blog-meta">
-                            <i class="fas fa-user"></i>  <span class="author" th:text="' ' + ${workshopAndOrganizer.get(workshop)}">Admin</span><span class="tab"></span>
-                            <i class="fas fa-calendar"></i>  <span class="date" th:text="' ' + ${#strings.substring(workshop.datetime,0,11)}"> 27 December, 2019</span>
-                        </p>
-                        <p class="excerpt" th:text="${#strings.abbreviate(workshop.description,100)}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                        <a th:href="@{/workshop/{id}(id=${workshop.getId()})}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                    </div>
+            <div class="col-md-12">
+                <div class="product-filters">
+                    <ul>
+                        <li class="active" data-filter="*">All</li>
+                        <li data-filter=".strawberry">Hatching</li>
+                        <li data-filter=".berry">Oil Paintings</li>
+                        <li data-filter=".lemon">Watercolor Painting</li>
+                    </ul>
                 </div>
             </div>
-
         </div>
 
-        <div class="row">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="pagination-wrap">
-                            <ul>
-                                <li><a href="#">Prev</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a class="active" href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">Next</a></li>
-                            </ul>
-                        </div>
+        <div class="row product-lists">
+            <div class="col-lg-4 col-md-6 text-center strawberry" th:each="artwork: ${artworks}" th:object="${artwork}" th:if="${artwork.label} == 'Verifying'">
+                <div class="single-product-item">
+                    <div class="product-image">
+                        <a th:href="@{/shop/{id}(id=${artwork.getId()})}"><img th:src="*{getImgUrl()}" alt=""></a>
                     </div>
+                    <h3 th:text="*{getTitle()}">Title</h3>
+                    <strong class="product-price" th:text="'Price ' + *{getPrice()} + ' $'"></strong><br>
+                    <strong>By </strong><strong class="product-price" th:text="${artAndOwner.get(artwork)}"></strong><br><br>
+                    <form th:action="@{/acceptArt}">
+                        <input type="hidden" th:name="artwork_id" th:value="${artwork.getId()}"   name="artwork_id" />
+                        <button type="submit" class="btn btn-dark">
+                            <i class="fas fa-check"></i> Accept
+                        </button>
+                        <br><br>
+                    </form>
+                    <form th:action="@{/declineArt}">
+                        <input type="hidden" th:name="artwork_id" th:value="${artwork.getId()}"   name="artwork_id" />
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-cross"></i> Decline
+                        </button>
+                        <br><br>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="pagination-wrap">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a class="active" href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- end workshops -->
-
+<!-- end products -->
 
 
 <!-- footer -->
@@ -165,16 +190,15 @@
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box about-widget">
                     <h2 class="widget-title">About us</h2>
-                    <p>The Infinity Art Gallery, run by Jasmine Roy, is a gathering room where both pilgrims and
-                        inhabitants, tourists and travelers may enjoy a new dimension of sharing ideas.</p>
+                    <p>Ut enim ad minim veniam perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.</p>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="footer-box get-in-touch">
                     <h2 class="widget-title">Get in Touch</h2>
                     <ul>
-                        <li>Dashashwamedh road, Varanasi, Uttar Pradesh 221108.</li>
-                        <li>support@infinity.com</li>
+                        <li>34/8, East Hukupara, Gifirtok, Sadan.</li>
+                        <li>support@fruitkha.com</li>
                         <li>+00 111 222 3333</li>
                     </ul>
                 </div>
@@ -183,31 +207,22 @@
                 <div class="footer-box pages">
                     <h2 class="widget-title">Pages</h2>
                     <ul>
-                        <li><a th:href="@{/}">Home</a></li>
-                        <li><a th:href="@{/about}">About</a></li>
-                        <li><a th:href="@{/shop}">Shop</a></li>
-                        <li><a th:href="@{/workshop}">Workshops</a></li>
-                        <li><a th:href="@{/exhibition}">Exhibitions</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Shop</a></li>
+                        <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
-                <div class="copyright">
-                    <div class="container">
-                        <div class="row">
-                            <div class="text-center">
-                                <div class="social-icons">
-                                    <ul>
-                                        <li><a th:href="@{#}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a th:href="@{#}" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a th:href="@{#}" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a th:href="@{#}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
-                                        <li><a th:href="@{#}" target="_blank"><i class="fab fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="footer-box subscribe">
+                    <h2 class="widget-title">Subscribe</h2>
+                    <p>Subscribe to our mailing list to get the latest updates.</p>
+                    <form action="index.html">
+                        <input type="email" placeholder="Email">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -215,6 +230,28 @@
 </div>
 <!-- end footer -->
 
+<!-- copyright -->
+<div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <p>Copyrights &copy; 2019 - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.</p>
+            </div>
+            <div class="col-lg-6 text-right col-md-12">
+                <div class="social-icons">
+                    <ul>
+                        <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end copyright -->
 
 <!-- jquery -->
 <script th:src="@{/js/jquery-1.11.3.min.js}"></script>

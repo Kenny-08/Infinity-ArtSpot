@@ -124,7 +124,8 @@
                         <p th:text="${workshop.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint soluta, similique quidem fuga vel voluptates amet doloremque corrupti. Perferendis totam voluptates eius error fuga cupiditate dolorum? Adipisci mollitia quod labore aut natus nobis. Rerum perferendis, nobis hic adipisci vel inventore facilis rem illo, tenetur ipsa voluptate dolorem, cupiditate temporibus laudantium quidem recusandae expedita dicta cum eum. Quae laborum repellat a ut, voluptatum ipsa eum. Culpa fugiat minus laborum quia nam!</p>
 
                     </div>
-
+<br>
+                    <br>
 
                     <div class="comment-template">
                         <h4>Register for Workshop</h4>
@@ -134,7 +135,7 @@
                                 <input th:field="${workshopRegister.confirm}" type="checkbox" id="confirm" name="confirm" th:value="yes" required>
                                 <label for="confirm"> I hereby conform my willingness to attend the above-mentioned workshop</label><br>
                             <input type="hidden" th:name="workshop_id" th:value="${workshop.getId()}"   name="workshop_id" />
-                            <p><input type="submit" value="Submit" ></p>
+                            <p><input type="submit" value="Register" ></p>
                         </form>
                     </div>
 

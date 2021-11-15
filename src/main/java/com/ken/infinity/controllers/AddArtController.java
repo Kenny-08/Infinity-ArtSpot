@@ -64,7 +64,7 @@ public class AddArtController {
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
-        return "homepage";
+        return "redirect:/homepage";
     }
 
     private class FileUploadUtil {
