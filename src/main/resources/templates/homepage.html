@@ -195,6 +195,44 @@
 <!-- end product section -->
 
 
+
+<!-- latest news -->
+<div class="latest-news pt-150 pb-150">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="section-title">
+                    <h3><span class="orange-text">Our</span> Workshops</h3>
+                    <p>Participants are welcome to attend any workshop of their interest for free</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6" th:each="workshop: ${workshops}" th:object="${workshop}">
+                <div class="single-latest-news">
+                    <a th:href="@{/workshop/{id}(id=${workshop.getId()})}"><img class="latest-news-bg" th:src="*{getImgUrl()}" alt=""></a>
+                    <div class="news-text-box">
+                        <h3 th:text="*{title}"><a th:href="@{/workshop/{id}(id=${workshop.getId()})}">You will vainly look for fruit on it in autumn.</a></h3>
+                        <p class="blog-meta">
+                            <i class="fas fa-user"></i>  <span class="author" th:text="' ' + ${workshopAndOrganizer.get(workshop)}">Admin</span><span class="tab"></span>
+                            <i class="fas fa-calendar"></i>  <span class="date" th:text="' ' + ${#strings.substring(workshop.datetime,0,11)}"> 27 December, 2019</span>
+                        </p>
+                        <p class="excerpt" th:text="${#strings.abbreviate(workshop.description,100)}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
+                        <a th:href="@{/workshop/{id}(id=${workshop.getId()})}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- end latest news -->
+
+
 <!-- testimonail-section -->
 <div class="testimonail-section mt-150 mb-150">
     <div class="container">
@@ -250,43 +288,6 @@
 </div>
 <!-- end testimonail-section -->
 
-<!--todo: Add workshop or exhibition section-->
-
-<!-- latest news -->
-<div class="latest-news pt-150 pb-150">
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">
-                    <h3><span class="orange-text">Our</span> Workshops</h3>
-                    <p>Participants are welcome to attend any workshop of their interest for free</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-4 col-md-6" th:each="workshop: ${workshops}" th:object="${workshop}">
-                <div class="single-latest-news">
-                    <a th:href="@{/workshop/{id}(id=${workshop.getId()})}"><img class="latest-news-bg" th:src="*{getImgUrl()}" alt=""></a>
-                    <div class="news-text-box">
-                        <h3 th:text="*{title}"><a th:href="@{/workshop/{id}(id=${workshop.getId()})}">You will vainly look for fruit on it in autumn.</a></h3>
-                        <p class="blog-meta">
-                            <i class="fas fa-user"></i>  <span class="author" th:text="' ' + ${workshopAndOrganizer.get(workshop)}">Admin</span><span class="tab"></span>
-                            <i class="fas fa-calendar"></i>  <span class="date" th:text="' ' + ${#strings.substring(workshop.datetime,0,11)}"> 27 December, 2019</span>
-                        </p>
-                        <p class="excerpt" th:text="${#strings.abbreviate(workshop.description,100)}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus laborum autem, dolores inventore, beatae nam.</p>
-                        <a th:href="@{/workshop/{id}(id=${workshop.getId()})}" class="read-more-btn">read more <i class="fas fa-angle-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-    </div>
-</div>
-<!-- end latest news -->
 
 <!-- footer -->
 <div class="footer-area">
