@@ -20,7 +20,7 @@ Beyond this, there were some more features I desire to add, and may add soon in 
 
 ## Showcase
 
-[Video Demo](https://drive.google.com/drive/folders/10WDScVn-tSk2ZOOPk086Fc81zWWaTsVf?usp=sharing) Skip the schema part, it's boring 	:upside_down_face: (Not accessible to all)
+[Video Demo](https://drive.google.com/file/d/11A2pjNrm1y5Z_M38Y1-x5tFYGxU4yoFz/view?usp=sharing) Skip the schema part, it's boring 	:upside_down_face: (Not accessible to all)
 
 ## Home Page
 
