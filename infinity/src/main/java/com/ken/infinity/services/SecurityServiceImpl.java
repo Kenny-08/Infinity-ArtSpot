@@ -22,7 +22,7 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public boolean isLoggedIn() {
         if(findLoggedInUsername()==null) System.out.println("not logged in ");
-        else System.out.println("we're in!");
+        else System.out.println("logged in!");
         if(findLoggedInUsername()==null) return false;
         return true;
     }
