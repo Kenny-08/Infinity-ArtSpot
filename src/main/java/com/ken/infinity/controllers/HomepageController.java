@@ -32,7 +32,8 @@ public class HomepageController {
     @RequestMapping({"/", "/homepage"})
     public String homepage(Model model){
         List<Artwork> artworks = artworkRepository.getArtworks();
-        List<Artwork> featured = artworks.subList(artworks.size()-6, artworks.size());
+        List<Artwork> featured = artworks;
+//        List<Artwork> featured = artworks.subList(artworks.size()-6, artworks.size());
 
 
         Map<Object, String> artAndOwner = new HashMap<Object, String>();
