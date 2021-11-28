@@ -14,9 +14,7 @@
 	<name>infinity</name>
 	<description>infinity</description>
 	<properties>
-		<java.version>13</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
- 		<maven.compiler.target>1.8</maven.compiler.target>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -90,12 +88,17 @@
 				<plugin>
 				    <groupId>org.apache.maven.plugins</groupId>
 				    <artifactId>maven-compiler-plugin</artifactId>
-				    <configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				    </configuration>
+				    <version>3.0.1</version>
+					<executions>
+						<execution>
+							<id>copy-dependencies</id>
+							<phase>package</phase>
+							<goals>
+								<goal>copy-dependencies</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
-    			
 		</plugins>
 	</build>
 
