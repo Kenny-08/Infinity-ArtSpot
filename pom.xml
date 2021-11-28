@@ -77,19 +77,63 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>
+					org.springframework.boot
+				</groupId>
+				<artifactId>
+					spring-boot-maven-plugin
+				</artifactId>
 			</plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-                <configuration>
-                    <source>16</source>
-                    <target>16</target>
-                </configuration>
-            </plugin>
-        </plugins>
+			<plugin>
+				<groupId>
+					com.hubspot.maven.plugins
+				</groupId>
+				<artifactId>
+					prettier-maven-plugin
+				</artifactId>
+				<version>
+					0.7
+				</version>
+				<configuration>
+					<printWidth>
+						3000
+					</printWidth>
+					<tabWidth>
+						4
+					</tabWidth>
+					<useTabs>
+						false
+					</useTabs>
+					<ignoreConfigFile>
+						true
+					</ignoreConfigFile>
+					<ignoreEditorConfig>
+						true
+					</ignoreEditorConfig>
+				</configuration>
+				<executions>
+					<execution>
+						<?m2e ignore?>
+						<phase>
+							validate
+						</phase>
+						<goals>
+							<goal>
+								write
+							</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>16</source>
+					<target>16</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 
 </project>
